@@ -9,13 +9,13 @@ type MarkovChain
     #TODO: might be useful to make this a tuple at some point
     db                  ::Dict{Any,Any}
 
-    function MarkovChain(source_file_path)
+    function MarkovChain(source_file_path, parse_dataset::Function)
         this = new(source_file_path, Dict{Any,Any}())
+        # do initial generation
+        generateDatabase(this, parse_dataset(this.source_file_path))
 
         function updateCallback(filename, events, status)
-            reviews = JSON.parsefile(this.source_file_path)
-            review_descs = [r["desc"] for r in reviews]
-            generateDatabase(this, join(review_descs, " "))
+            generateDatabase(this, parse_dataset(this.source_file_path))
         end
 
         @async begin
