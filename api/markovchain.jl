@@ -1,3 +1,5 @@
+# Simple Markov Chain creator
+# heavily inspired by https://github.com/TehMillhouse/PyMarkovChain
 module SimpleMarkovChain
 
 import JSON
@@ -83,9 +85,9 @@ function generateDatabase(mc::MarkovChain, textsample; sentence_sep=r"\.|\?|!|\n
 
                 link.next_words[next_word] += 1
             end
-            
+
             # take care of the end of sentence stuff
-            end_tuple = words[length(words) - (n_size - 1) : length(words)]
+            end_tuple = words[ end - (n_size - 1) : end]
             if ! haskey(db, end_tuple)
                 db[end_tuple] = MarkovLink()
             end
@@ -110,8 +112,37 @@ function _accumulateString(mc::MarkovChain)
     
 end
 
-function _nextWord(mc::MarkovChain, last_words)
+function _nextWord(mc::MarkovChain, last_words::Array{String,1})
+    db = mc.db
+    if last_words != [""]:
+        while ! haskey(db, last_words) && length(last_words) > 0
+            last_words = last_words[2:end]
+        end
+    end
+    if length(last_words) == 0
+        # bailing early with empty string
+        return ""
+    end
 
+    next_words = db[last_words]
+    sample = rand()
+    # since rounding errors might make us miss out on some words
+    maxprob = 0.0
+    maxprobword = ""
+    for next_link in next_words
+        # remember which word had the highest probability
+        # this is the word we'll default to if we can't find anythin else
+        if next_link > maxprob
+            maxprob = probmap[candidate]
+            maxprobword = candidate
+        if sample > probmap[candidate]
+            sample -= probmap[candidate]
+        else
+            return candidate
+        end
+    end
+    # getting here means we haven't found a matching word. :(
+    maxprobword
 end
 
 end
