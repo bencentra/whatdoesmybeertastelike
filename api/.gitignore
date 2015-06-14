@@ -1,7 +1,9 @@
 
+celerybeat-schedule
+secrets.py
+
 .ropeproject/
 __pycache__/
 wdmbtl_venv/
 
-celerybeat-schedule
 
