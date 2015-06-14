@@ -24,7 +24,7 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
 
-@periodic_task(run_every=crontab(hour='*', minute='*/5', day_of_week='*'))
+@periodic_task(run_every=crontab(hour='*', minute='*/30', day_of_week='*'))
 def update_reviews():
     with app.app_context():
         apikey_param = {'apikey': app.config['BEER_REVIEW_API_KEY']}
