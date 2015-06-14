@@ -9,6 +9,7 @@ class BeerMarkov():
         self._markov_dir = markov_dir
         self._markov = MarkovChain(markov_dir + '/beer_desc')
         self._name_markov = MarkovChain(markov_dir + '/beer_name')
+        self.refresh_database()
 
     def refresh_database(self):
         with open(self._reviews_file, 'r') as review_data:
