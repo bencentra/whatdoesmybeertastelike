@@ -11,7 +11,8 @@ uwsgi --ini uwsgi.ini
 celery -A server.celery beat
 ```
 
-Celery isn't running a daemon yet so will need to be escaped or something
+Celery isn't running as a daemon yet so will need to be run second
+or in a separate shell.
 
 # Killing Uwsgi #
 ```
