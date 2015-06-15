@@ -1,4 +1,5 @@
 from flask import Flask, g, current_app
+from flask.ext.cors import CORS
 import requests
 import json
 from celery import Celery
@@ -11,6 +12,8 @@ import subprocess
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 app.config.from_pyfile('secrets.py')
+
+cors = CORS(app)
 
 
 beer_markov = BeerMarkov(app.config['REVIEWS_FILE'], app.config['MARKOV_DIR'])

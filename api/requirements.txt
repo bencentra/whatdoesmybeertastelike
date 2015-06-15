@@ -5,14 +5,15 @@ celery==3.1.18
 cffi==1.1.0
 clang==3.5
 Flask==0.10.1
+Flask-Cors==2.0.1
 itsdangerous==0.24
 Jinja2==2.7.3
 kombu==3.0.26
 MarkupSafe==0.23
 pycparser==2.13
+pygit2==0.22.0
 PyMarkovChain==1.7.5
 pytz==2015.4
-redis==2.10.3
 requests==2.7.0
 six==1.9.0
 tzlocal==1.1.3
