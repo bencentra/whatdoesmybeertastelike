@@ -11,7 +11,6 @@ Jinja2==2.7.3
 kombu==3.0.26
 MarkupSafe==0.23
 pycparser==2.13
-pygit2==0.22.0
 PyMarkovChain==1.7.5
 pytz==2015.4
 requests==2.7.0
