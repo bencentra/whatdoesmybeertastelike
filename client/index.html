@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>What Does My Beer Taste Like</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link href="style/main.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<!-- Review -->
+		<div class="row review">
+			<div class="col-md-12 col-sm-12">
+				<p>My beer tastes like...</p>
+				<p id="review">Loading...</p>
+				<button id="refill" class="btn btn-primary">Another Round?</button>
+			</div>
+		</div>
+		<!-- Social -->
+		<div class="row social">
+			<div class="col-md-12 col-sm-12">
+				<button id="tweet" class="btn btn-default">Tweet This</button>
+				<button id="facebook" class="btn btn-default">Share This</button>
+			</div>
+		</div>
+		<!-- Footer -->
+		<div class="row footer">
+			<div class="col-md-6 col-sm-12">
+				<p>Made by <a href="#">Ben Centra</a> and <a href="#">Brian Lewis</a>.</p>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<p>View our <a href="#">GitHub Project</a>.
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+
+		(function() {
+
+			'use strict';
+			
+			var $review, 
+					$refill, 
+					$tweet, 
+					$facebook,
+					review = "",
+					hashtag = "MyBeerTastesLike";
+
+			$(document).ready(function() {
+				$review = $('#review');
+				$refill = $('#refill').on('click', getReview);
+				$tweet = $('#tweet').on('click', tweetThis);
+				$facebook = $('#facebook').on('click', facebookThis);
+				getReview();
+			});
+
+			function getReview() {
+				$review.html('Loading...');
+				$refill.attr('disabled', true);
+				WDMBTL.getReview()
+				.done(function(response) {
+					review = response;
+					$review.text(review);
+				})
+				.fail(function(error) {
+					$review.text("Uh-oh, something broke");
+				})
+				.always(function() {
+					$refill.removeAttr('disabled');
+				});
+			}
+
+			function tweetThis() {
+				var url = WDMBTL.getTwitterUrl(review, hashtag);
+				shareThis(url);
+			}
+
+			function facebookThis() {
+				var url = WDMBTL.getFacebookUrl(review);
+				shareThis(url);
+			}
+
+			function shareThis(url) {
+				if (typeof url === 'string') {
+					window.open(url, '_blank');
+				}
+			}
+
+		})();
+
+	</script>
+</body>
+</html>
