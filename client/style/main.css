@@ -1,0 +1,100 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding-top: 20px;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+
+.title, .subtitle {
+  font-family: "Bree Serif", serif;
+} 
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.review-wrapper {
+  padding: 2em 0;
+  font-size: 32px;
+}
+
+.btn-refill,
+.btn-twitter, 
+.btn-facebook {
+  color: white;
+  border: none;
+  font-family: "Bree Serif", serif;
+}
+
+.btn-refill {
+  background-color: #D59B5B;
+  box-shadow: 0 3px #B98450;
+  font-size: 24px;
+}
+.btn-refill:hover,
+.btn-refill:focus, 
+.btn-refill:active {
+  color: white;
+  background-color: #B98450;
+  outline: none;
+}
+.btn-refill[disabled] {
+  color: white;
+  background-color: #DDA26C;
+  box-shadow: 0 3px #DDA26C;
+}
+
+.btn-twitter {
+  background-color: #5FA9DD;
+  box-shadow: 0 3px #4FA0D2;
+  font-size: 18px;
+}
+.btn-twitter:hover,
+.btn-twitter:focus,
+.btn-twitter:active {
+  color: white;
+  background-color: #4FA0D2;
+  outline: none;
+}
+.btn-twitter[disabled] {
+  color: white;
+  background-color: #70B9E5;
+  box-shadow: 0 3px #70B9E5;
+}
+
+.btn-facebook {
+  background-color: #3B5998;
+  box-shadow: 0 3px #324C7C;
+  font-size: 18px;
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active {
+  color: white;
+  background-color: #324C7C;
+  outline: none;
+}
+.btn-facebook[disabled] {
+  background-color: #4D6BA0;
+  box-shadow: 0 3px #4D6BA0;
+}
+
+.main {
+  margin-bottom: 12px;
+}
+
+.social {
+  padding-bottom: 4em;
+}
+
+.footer {
+  padding-bottom: 2em;
+}
