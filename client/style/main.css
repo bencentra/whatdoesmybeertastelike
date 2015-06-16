@@ -4,13 +4,22 @@ html, body {
 }
 
 body {
-  padding-top: 20px;
+  padding-top: 72px;
   text-align: center;
   font-family: "Lato", sans-serif;
+  background-color: #F4EFDC;
+}
+
+a {
+  color: #B98450;
+}
+a:hover, a:active {
+  color: #D59B5B;
 }
 
 .title, .subtitle {
   font-family: "Bree Serif", serif;
+  margin: 10px;
 } 
 
 .left {
@@ -21,9 +30,21 @@ body {
   text-align: right;
 }
 
+.navbar {
+  font-family: "Bree Serif", serif;
+  background-color: #D59B5B;
+}
+
+.navbar a,
+.navbar a:hover, .navbar a:active {
+  color: white;
+  text-decoration: none;
+}
+
 .review-wrapper {
   padding: 2em 0;
   font-size: 32px;
+  background-color: #;
 }
 
 .btn-refill,
@@ -97,4 +118,17 @@ body {
 
 .footer {
   padding-bottom: 2em;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 18px;
+    margin-top: 14px;
+  }
+  .subtitle {
+    font-size: 28px;
+  }
+  .review-wrapper {
+    font-size: 21px;
+  }
 }
