@@ -8,13 +8,15 @@
 
 	var baseUrl = 'http://whatdoesmybeertastelike.com',
 			apiUrl = baseUrl + ':8808/review',
+      bitlyUrl = 'http://bit.ly/wdmbtl',
 			twitterUrl = "http://twitter.com/share",
 			facebookUrl = "http://www.facebook.com/sharer.php";
 
 	window.WDMBTL = window.WDMBTL || {
 
 		getReview: function() {
-			var defer = $.Deferred();
+			var defer;
+      defer = $.Deferred();
 			$.ajax({
 				method: 'GET',
 				url: apiUrl,
@@ -30,22 +32,28 @@
 		},
 
 		getTwitterUrl: function(review, hashtag) {
+      var url, shortReview;
 			if (typeof review !== 'string' ||
 					typeof hashtag !== 'string') {
 				return false;
 			}
-			var url = twitterUrl;
-			url += '?text=' + review;
+			url = twitterUrl;
+      shortReview = review.substr(0, (140 - (hashtag.length + bitlyUrl.length) - 8));
+      if (shortReview.length < review.length) {
+        shortReview += '...';
+      }
+			url += '?text=' + shortReview;
 			url += '&hashtags=' + hashtag;
-			url += '&url=' + baseUrl;
+			url += '&url=' + bitlyUrl;
 			return url;
 		},
 
 		getFacebookUrl: function(review) {
+      var url;
 			if (typeof review !== 'string') {
 				return false;
 			}
-			var url = facebookUrl;
+			url = facebookUrl;
 			url += '?t=' + review;
 			url += '&u=' + baseUrl;
 			return url;
